@@ -1,0 +1,170 @@
+@import '~normalize.css';
+@import '~susy/sass/susy';
+@import '~susy/sass/plugins/svg-grid';
+@import 'mixin/background';
+@import 'mixin/util';
+
+$susy: (
+  'columns': susy-repeat(12),
+  'gutters': 0.25,
+  'spread': 'narrow',
+  'container-spread': 'wide'
+);
+
+* {
+  box-sizing: border-box;
+}
+
+.body {
+  font-family: STHeitiTC-Medium;
+}
+
+#app {
+}
+
+.centerbox {
+  max-width: 940px;
+  width: 100%;
+  margin: 0 auto;
+  // background: susy-svg-grid() no-repeat scroll;
+}
+.header {
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+
+  .centerbox {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    @include clearfix();
+  }
+
+  .logo {
+    float: left;
+
+    max-width: 214px;
+    width: 100%;
+    height: auto;
+  }
+  .searchbar {
+    float: right;
+    width: 460px;
+    display: block;
+    margin: 0;
+    font-size: 23px;
+    appearance: none;
+    box-shadow: none;
+    border-radius: none;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: #bbb;
+    }
+  }
+}
+
+.moviecard-container {
+  width: 100%;
+  height: auto;
+  background-color: #f2f2f2;
+  .centerbox {
+    @include clearfix();
+  }
+}
+
+.moviecard {
+  // display: inline-block;
+  position: relative;
+  float: left;
+
+  width: susy-span(3 of 12);
+  height: 375px;
+
+  background: #ffffff;
+  box-shadow: 0 2px 35px 0 rgba(216, 215, 215, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+
+  margin-left: gutter() / 2;
+  margin-right: gutter() / 2;
+  margin-bottom: 50px;
+  margin-top: 58px;
+
+  cursor: pointer;
+
+  &:hover {
+    .poster {
+      &:before {
+        opacity: 1;
+      }
+    }
+  }
+
+  .poster {
+    position: relative;
+    background-size: cover;
+    height: 218px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      @include black-gradient-background();
+      opacity: 0.5;
+    }
+
+    .year {
+      position: relative;
+      margin: 0;
+      margin-left: 22px;
+      padding-top: 190px;
+      font-size: 18px;
+      color: #cdcdcd;
+    }
+  }
+  .title {
+    font-size: 22px;
+    color: #494949;
+    margin: 0;
+    padding-left: 22px;
+    padding-right: 22px;
+    margin-top: 20px;
+    line-height: 1.3;
+  }
+  .genre {
+    position: absolute;
+    bottom: 25px;
+    left: 22px;
+
+    font-size: 18px;
+    color: #888888;
+    margin: 0;
+  }
+}
+// react css transition group
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
